@@ -49,7 +49,12 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.person),
             label: 'Profile',
           )
-        ]
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.deepOrange,
+        unselectedItemColor: Colors.deepOrange.shade200,
+        showUnselectedLabels: true,
       ),
     );
   }
