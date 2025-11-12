@@ -6,15 +6,15 @@ var wisataList = [
     alamat:
         'Jl. Letkol Iskandar, 16 Ilir, Kec. Ilir Timur I, Kota Palembang, Sumatera Selatan',
     jamBuka: '24 Jam',
-    instagram: '@jembatanampera_palembang',
+    instagram: '@ampera.bridge',
     deskripsi:
         'Jembatan Ampera adalah ikon utama Kota Palembang yang menghubungkan kawasan Seberang Ulu dan Seberang Ilir di atas Sungai Musi. Dibangun pada 1962 dan diresmikan pada 1965, jembatan ini dahulu bisa diangkat agar kapal besar dapat melintas. Kini Ampera menjadi pusat aktivitas wisata malam dengan pemandangan indah lampu kota yang berkilau di permukaan Sungai Musi.',
-    gambarUtama: 'link-gambar-jembatan-ampera-utama',
+    gambarUtama: 'images/jembatan_ampera.jpg',
     gambarGaleri: [
-      'link-gambar-jembatan-ampera-1',
-      'link-gambar-jembatan-ampera-2',
-      'link-gambar-jembatan-ampera-3',
-      'link-gambar-jembatan-ampera-4',
+      'https://infopublik.id/assets/upload/headline//Jembatan.jpg',
+      'https://bams.jambiprov.go.id/wp-content/uploads/2023/10/Jembatan-Ampera-1.png',
+      'https://binamarga.pu.go.id/balai-sj/uploads/images/1036/pn640/pemeriksaan-bersama-menara-jembatan-ampera.jpeg',
+      'https://solusiklik.co.id/wp-content/uploads/2024/11/Screenshot-2024-11-28-105306.png',
     ],
     isFavorite: false,
   ),
