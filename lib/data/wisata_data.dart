@@ -153,22 +153,22 @@ var wisataList = [
     ],
     isFavorite: false,
   ),
- WisataModel(
-  nama: 'Taman Wisata Alam Punti Kayu',
-  alamat:'Jl. Kolonel H. Burlian, Km. 6,5, Karya Baru, Alang-Alang Lebar, Kota Palembang, Sumatera Selatan',
-  jamBuka: '08.00 - 17.00 WIB',
-  instagram: '@tamanpuntikayu_palembang',
-  deskripsi:
-      'Taman Wisata Alam Punti Kayu merupakan kawasan hutan pinus di tengah Kota Palembang yang menjadi tempat rekreasi alam dan edukasi. Pengunjung dapat menikmati suasana sejuk, bersantai, berfoto, menaiki wahana permainan, atau berinteraksi dengan satwa di mini zoo. Tempat ini juga menjadi lokasi favorit untuk piknik keluarga dan kegiatan outdoor.',
-  gambarUtama: 'images/puntikayu.jpg',
-  gambarGaleri: [
-    'https://sumselupdate.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-16-at-16.20.58.jpeg',
- 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8JEYXNsT-_1qlQAW9cDEw2YieRUrbEDCVgWsW8XRIhn3haBqh3Eao6xyHXUChJGwDwgiXNtAtdvRueBrfK7hyotdudOacDVTk32dDyK2_UWy-C9UUUe80MACI7x7a9HcD39I30JZwfrIQ/s500/hutan-wisata-punti-kayu.jpg',
-    'https://www.indonesia.travel/contentassets/7e14d37452684004ae49b3d861a36425/jcr_content-41.jpg',
- 'https://asset-2.tribunnews.com/sumsel/foto/bank/images/hutan-kota-wisata-punti-kayu-selasa.jpg',
-  ],
-  isFavorite: false,
-),
+  WisataModel(
+    nama: 'Taman Wisata Alam Punti Kayu',
+    alamat:'Jl. Kolonel H. Burlian, Km. 6,5, Karya Baru, Alang-Alang Lebar, Kota Palembang, Sumatera Selatan',
+    jamBuka: '08.00 - 17.00 WIB',
+    instagram: '@tamanpuntikayu_palembang',
+    deskripsi:
+        'Taman Wisata Alam Punti Kayu merupakan kawasan hutan pinus di tengah Kota Palembang yang menjadi tempat rekreasi alam dan edukasi. Pengunjung dapat menikmati suasana sejuk, bersantai, berfoto, menaiki wahana permainan, atau berinteraksi dengan satwa di mini zoo. Tempat ini juga menjadi lokasi favorit untuk piknik keluarga dan kegiatan outdoor.',
+    gambarUtama: 'images/puntikayu.jpg',
+    gambarGaleri: [
+      'https://sumselupdate.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-16-at-16.20.58.jpeg',
+  'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8JEYXNsT-_1qlQAW9cDEw2YieRUrbEDCVgWsW8XRIhn3haBqh3Eao6xyHXUChJGwDwgiXNtAtdvRueBrfK7hyotdudOacDVTk32dDyK2_UWy-C9UUUe80MACI7x7a9HcD39I30JZwfrIQ/s500/hutan-wisata-punti-kayu.jpg',
+      'https://www.indonesia.travel/contentassets/7e14d37452684004ae49b3d861a36425/jcr_content-41.jpg',
+  'https://asset-2.tribunnews.com/sumsel/foto/bank/images/hutan-kota-wisata-punti-kayu-selasa.jpg',
+    ],
+    isFavorite: false,
+  ),
 ];
 
 
