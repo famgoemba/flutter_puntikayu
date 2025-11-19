@@ -11,45 +11,53 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 8.0,
-          mainAxisSpacing: 8.0
-        ), 
-        itemCount: wisataList.length,
-        itemBuilder: (context, index) {
-          WisataModel wisataModel = wisataList[index];
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            elevation: 1,
-            child: Column(
-              children: [
-                //Gambar Utama Tempat Wisata
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16), 
-                    topRight: Radius.circular(16)
+      body: Padding(
+        padding: const EdgeInsets.only(left: 16, right: 16),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8.0,
+            mainAxisSpacing: 8.0
+          ), 
+          itemCount: wisataList.length,
+          itemBuilder: (context, index) {
+            WisataModel wisataModel = wisataList[index];
+            return Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              elevation: 1,
+              child: Column(
+                children: [
+                  //Gambar Utama Tempat Wisata
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(16), 
+                        topRight: Radius.circular(16)
+                      ),
+                      child: Image.asset(
+                        wisataModel.gambarUtama,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                  child: Image.asset(
-                    wisataModel.gambarUtama,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                //Nama Tempat Wisata
-                Text(
-                  wisataModel.nama,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold
-                  ),
-                )
-              ],
-            ),
-          );
-        },
+                  //Nama Tempat Wisata
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      wisataModel.nama,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
