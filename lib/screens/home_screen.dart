@@ -22,15 +22,21 @@ class HomeScreen extends StatelessWidget {
           WisataModel wisataModel = wisataList[index];
           return Card(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.circular(16),
+              borderRadius: BorderRadius.circular(16),
             ),
             elevation: 1,
             child: Column(
               children: [
                 //Gambar Utama Tempat Wisata
-                Image.asset(
-                  wisataModel.gambarUtama,
-                  fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(16), 
+                    topRight: Radius.circular(16)
+                  ),
+                  child: Image.asset(
+                    wisataModel.gambarUtama,
+                    fit: BoxFit.cover,
+                  ),
                 ),
                 //Nama Tempat Wisata
                 Text(
