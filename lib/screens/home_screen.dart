@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_puntikayu/data/wisata_data.dart';
+import 'package:flutter_puntikayu/models/wisata_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,6 +10,40 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
+      ),
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 8.0,
+          mainAxisSpacing: 8.0
+        ), 
+        itemCount: wisataList.length,
+        itemBuilder: (context, index) {
+          WisataModel wisataModel = wisataList[index];
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadiusGeometry.circular(16),
+            ),
+            elevation: 1,
+            child: Column(
+              children: [
+                //Gambar Utama Tempat Wisata
+                Image.asset(
+                  wisataModel.gambarUtama,
+                  fit: BoxFit.cover,
+                ),
+                //Nama Tempat Wisata
+                Text(
+                  wisataModel.nama,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold
+                  ),
+                )
+              ],
+            ),
+          );
+        },
       ),
     );
   }
