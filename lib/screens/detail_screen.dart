@@ -14,33 +14,49 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // GAMBAR UTAMA DAN TOMBOL BACK (TUMPUKAN)
-            Stack(
-              children: [
-                // Gambar Utama
-                Image.asset(
-                  widget.wisataModel.gambarUtama,
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: 300,
-                ),
-              ],
-            ),
-            // NAMA DAN TOMBOL LOVE
-
-            // ALAMAT
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // GAMBAR UTAMA DAN TOMBOL BACK (TUMPUKAN)
+              Stack(
+                children: [
+                  // Gambar Utama
+                  Image.asset(
+                    widget.wisataModel.gambarUtama,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 300,
+                  ),
+                  // Tombol Back
+                  Container(
+                    margin: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white70
+                    ),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }, 
+                      icon: const Icon(Icons.arrow_back)
+                    )
+                  )
+                ],
+              ),
+              // NAMA DAN TOMBOL LOVE
         
-            // JAM BUKA
-        
-            // INSTAGRAM
-        
-            // DESKRIPSI
-        
-            // GAMBAR GALERI
-          ],
+              // ALAMAT
+          
+              // JAM BUKA
+          
+              // INSTAGRAM
+          
+              // DESKRIPSI
+          
+              // GAMBAR GALERI
+            ],
+          ),
         ),
       )
     );
