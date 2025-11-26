@@ -14,9 +14,35 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.wisataModel.nama),
-      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // GAMBAR UTAMA DAN TOMBOL BACK (TUMPUKAN)
+            Stack(
+              children: [
+                // Gambar Utama
+                Image.asset(
+                  widget.wisataModel.gambarUtama,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: 300,
+                ),
+              ],
+            ),
+            // NAMA DAN TOMBOL LOVE
+
+            // ALAMAT
+        
+            // JAM BUKA
+        
+            // INSTAGRAM
+        
+            // DESKRIPSI
+        
+            // GAMBAR GALERI
+          ],
+        ),
+      )
     );
   }
 }
