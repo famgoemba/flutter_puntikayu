@@ -80,11 +80,13 @@ class _DetailScreenState extends State<DetailScreen> {
                       Icons.location_on,
                       color: Colors.red,
                     ),
-                    Text(
-                      ' Alamat',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    SizedBox(
+                      width: 70,
+                      child: Text(
+                        ' Alamat',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    const SizedBox(width: 24),
                     Text(':'),
                     const SizedBox(width: 8),
                     Expanded(
@@ -92,9 +94,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     )
                   ],
                 ),
-              )
-              // Jam Buka
-          
+              ),
               // Instagram
           
               // DESKRIPSI
