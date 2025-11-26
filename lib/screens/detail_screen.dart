@@ -45,7 +45,27 @@ class _DetailScreenState extends State<DetailScreen> {
                 ],
               ),
               // NAMA DAN TOMBOL LOVE
-        
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Nama
+                  Text(
+                    widget.wisataModel.nama,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  // Tombol Love
+                  IconButton(
+                    onPressed: () {}, 
+                    icon: Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                    )
+                  )
+                ],
+              )
               // ALAMAT
           
               // JAM BUKA
