@@ -39,6 +39,39 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: const Text('Search')));
+    return Scaffold(
+      appBar: AppBar(title: const Text('Search')),
+      body: Column(
+        children: [
+          // SEARCH BOX
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.deepOrange.shade100,
+              ),
+              child: TextField(
+                controller: _txtSearch,
+                autofocus: false,
+                decoration: const InputDecoration(
+                  hintText: 'Cari Tempat Wisata ...',
+                  prefixIcon: Icon(Icons.search),
+                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.deepOrange),
+                  ),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // HASIL PENCARIAN
+        ],
+      ),
+    );
   }
 }
