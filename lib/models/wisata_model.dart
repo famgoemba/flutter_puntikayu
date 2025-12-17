@@ -5,6 +5,7 @@ class WisataModel {
   final String instagram;
   final String deskripsi;
   final String gambarUtama;
+  final String koordinat;
   final List<String> gambarGaleri;
   bool isFavorite;
 
@@ -15,6 +16,7 @@ class WisataModel {
     required this.instagram, 
     required this.deskripsi, 
     required this.gambarUtama, 
+    required this.koordinat,
     required this.gambarGaleri,
     this.isFavorite = false,
   });

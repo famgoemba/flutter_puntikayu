@@ -10,6 +10,7 @@ var wisataList = [
     deskripsi:
         'Jembatan Ampera adalah ikon utama Kota Palembang yang menghubungkan kawasan Seberang Ulu dan Seberang Ilir di atas Sungai Musi. Dibangun pada 1962 dan diresmikan pada 1965, jembatan ini dahulu bisa diangkat agar kapal besar dapat melintas. Kini Ampera menjadi pusat aktivitas wisata malam dengan pemandangan indah lampu kota yang berkilau di permukaan Sungai Musi.',
     gambarUtama: 'images/jembatan_ampera.jpg',
+    koordinat: '-2.991613286039517, 104.76354197235324',
     gambarGaleri: [
       'https://infopublik.id/assets/upload/headline//Jembatan.jpg',
       'https://bams.jambiprov.go.id/wp-content/uploads/2023/10/Jembatan-Ampera-1.png',
@@ -27,6 +28,7 @@ var wisataList = [
     deskripsi:
         'Benteng Kuto Besak merupakan peninggalan Kesultanan Palembang Darussalam yang dibangun pada abad ke-18. Dinding tebal dan arsitektur kokohnya menjadi saksi sejarah kejayaan kerajaan Palembang. Terletak di tepi Sungai Musi, benteng ini kini menjadi spot wisata sejarah dan fotografi populer dengan pemandangan langsung ke Jembatan Ampera.',
     gambarUtama: 'images/bkb.jpg',
+    koordinat: '-2.99115318370325, 104.7595452181787',
     gambarGaleri: [
       'https://thumb.viva.id/intipseleb/1265x711/2024/07/10/668dee30adbbf-benteng-kuto-besak-palembang.jpg',
       'https://1.bp.blogspot.com/-m19L-iEt95Q/WtBwCnrFTWI/AAAAAAAAAlg/3VSF4MwaPi05XjHYEsZkeeKngwy9v8UuQCLcBGAs/s1600/benteng-kuto-besak.jpg'
@@ -44,6 +46,7 @@ var wisataList = [
     deskripsi:
         'Pulau kecil di tengah Sungai Musi ini terkenal dengan legenda cinta Siti Fatimah dan Tan Bun An. Di pulau ini berdiri pagoda sembilan lantai dan klenteng tua yang menjadi pusat perayaan Cap Go Meh. Selain nilai sejarah dan budaya Tionghoa yang kuat, Pulau Kemaro juga menawarkan suasana tenang dan pemandangan sungai yang menawan.',
     gambarUtama: 'images/pulau_kemaro.jpg',
+    koordinat: '-2.9771537058710673, 104.81741388367965',
     gambarGaleri: [
       'https://asset.kompas.com/crops/l5NCFffslFAhG1EmvXq7xQiqCeI=/0x0:780x390/780x390/data/photo/2014/01/28/1702585kelenteng-22780x390.jpg',
       'https://indonesia.go.id/assets/upload/headline/1613092434_zvzz_thumb.jpeg',
@@ -61,6 +64,7 @@ var wisataList = [
     deskripsi:
         'Jakabaring Sport City adalah kompleks olahraga terbesar di Sumatera Selatan. Tempat ini memiliki berbagai fasilitas internasional seperti stadion, arena akuatik, lintasan atletik, dan danau buatan. Selain menjadi lokasi ajang olahraga besar, kawasan ini juga sering digunakan untuk rekreasi, bersepeda, dan menikmati suasana sore Palembang.',
     gambarUtama: 'images/jakabaring.jpg',
+    koordinat: '-3.0179847457651476, 104.79195692427622',
     gambarGaleri: [
       'https://blog-images.reddoorz.com/uploads/ckeditor/pictures/4767/content_jakabaring_3.jpg',
       'https://cdn.antaranews.com/cache/800x533/2017/06/20170630Wisata-Di-Jakabaring-Sport-City-300617-Lmo-4.jpg',
@@ -77,6 +81,7 @@ var wisataList = [
     deskripsi:
         'Taman Wisata Purbakala Sriwijaya merupakan kawasan situs arkeologi peninggalan Kerajaan Sriwijaya. Di sini pengunjung dapat melihat reruntuhan candi, kolam kuno, serta museum kecil yang menyimpan artefak sejarah. Suasana asri dan rindang menjadikannya tempat edukasi sejarah sekaligus rekreasi keluarga yang menarik.',
     gambarUtama: 'images/tamanpurbakala.jpg',
+    koordinat: '-3.014839345210411, 104.73441819544067',
     gambarGaleri: [
       'https://indonesiakaya.com/wp-content/uploads/2020/10/Taman_Purbakala_Kerajaan_Sriwijaya_TPKS_1200.jpg',
       'https://ik.trn.asia/uploads/2023/06/1687261176498.jpeg',
@@ -94,6 +99,7 @@ var wisataList = [
     deskripsi:
         'Bukit Siguntang adalah situs bersejarah yang diyakini sebagai pusat spiritual Kerajaan Sriwijaya. Di kawasan ini terdapat makam tokoh-tokoh kuno serta pemandangan kota dari ketinggian. Dengan suasana tenang dan pepohonan rindang, tempat ini cocok untuk wisata religi dan edukasi sejarah Palembang.',
     gambarUtama: 'images/bukit_siguntang.jpg',
+    koordinat: '-2.994858085623957, 104.72614200206394',
     gambarGaleri: [
       'https://indonesiakaya.com/wp-content/uploads/2020/10/5__IMG_4112_Kawasan_Bukit_Siguntang_kerap_menjadi_salah_satu_destinasi_wisata_sejarah_dan_budaya_yang_banyak_dikunjungi_di_Palembang_2.jpg',
       'https://awsimages.detik.net.id/community/media/visual/2023/06/08/taman-purbakala-bukit-siguntang_169.jpeg?w=1200',
@@ -111,6 +117,7 @@ var wisataList = [
     deskripsi:
         'Masjid Cheng Ho Palembang memadukan gaya arsitektur Tionghoa, Arab, dan Nusantara. Didirikan tahun 2008 oleh komunitas Tionghoa Muslim, masjid ini menjadi simbol kerukunan dan akulturasi budaya. Warna merah-hijau khas Tiongkok dan ornamen kaligrafi menjadikannya spot foto favorit wisatawan.',
     gambarUtama: 'images/masjid_cheng_ho.jpg',
+    koordinat: '-3.0242555913065474, 104.78010929544074',
     gambarGaleri: [
       'https://indonesiakaya.com/wp-content/uploads/2020/10/2__IMG_4170_Masjid_Cheng_Ho_Palembang_merupakan_masjid_yang_dibangun_atas_prakrasa_Persatuan_Islam_Tionghoa_PITI_Palembang.jpg',
       'https://pict.sindonews.net/dyn/850/pena/news/2021/01/02/29/287774/unik-dan-bersejarah-masjid-muhammad-cheng-ho-sriwijaya-di-kota-palembang-mvv.png',
@@ -127,6 +134,7 @@ var wisataList = [
     deskripsi:
         'Bayt Al-Qur\'an Al-Akbar adalah museum Al-Qur\'an terbesar di dunia yang memamerkan ayat-ayat suci diukir pada lembaran kayu tembesu. Bangunan lima lantainya menampilkan karya seni Islam yang menakjubkan dan menjadi destinasi religi utama di Palembang.',
     gambarUtama: 'images/baytalquran.jpg',
+    koordinat: '-3.0112163884916403, 104.70398039544062',
     gambarGaleri: [
       'https://statik.tempo.co/data/2022/04/09/id_1101858/1101858_720.jpg',
       'https://img.okezone.com/content/2022/04/11/408/2576840/indahnya-al-quran-raksasa-di-palembang-bisa-jadi-destinasi-wisata-religi-qTDXaKA7nu.jpg',
@@ -144,6 +152,7 @@ var wisataList = [
     deskripsi:
         'Museum Balaputra Dewa di Palembang adalah museum etnografi yang menampilkan sejarah dan tradisi Provinsi Sumatera Selatan dari zaman prasejarah hingga kolonialisme, dengan koleksi yang mencakup artefak prasejarah, peninggalan Kerajaan Sriwijaya (termasuk replika prasasti), koleksi Kesultanan Palembang seperti songket, dan daya tarik utama berupa Rumah Limas di halaman belakang.',
     gambarUtama: 'images/museum_balaputera_dewa.png',
+    koordinat: '-2.950412604750828, 104.73029303776902',
     gambarGaleri: [
       'https://cdn.antaranews.com/cache/1200x800/2023/04/30/20230430_214806.jpg',
       'https://cdn.antaranews.com/cache/1200x800/2024/11/15/5003C651-1122-441F-9ED3-82B4527717D0.jpeg',
@@ -161,6 +170,7 @@ var wisataList = [
     deskripsi:
         'Taman Wisata Alam Punti Kayu merupakan kawasan hutan pinus di tengah Kota Palembang yang menjadi tempat rekreasi alam dan edukasi. Pengunjung dapat menikmati suasana sejuk, bersantai, berfoto, menaiki wahana permainan, atau berinteraksi dengan satwa di mini zoo. Tempat ini juga menjadi lokasi favorit untuk piknik keluarga dan kegiatan outdoor.',
     gambarUtama: 'images/puntikayu.jpg',
+    koordinat: '-2.943445603416378, 104.72802475311117',
     gambarGaleri: [
       'https://sumselupdate.com/wp-content/uploads/2022/05/WhatsApp-Image-2022-05-16-at-16.20.58.jpeg',
       'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8JEYXNsT-_1qlQAW9cDEw2YieRUrbEDCVgWsW8XRIhn3haBqh3Eao6xyHXUChJGwDwgiXNtAtdvRueBrfK7hyotdudOacDVTk32dDyK2_UWy-C9UUUe80MACI7x7a9HcD39I30JZwfrIQ/s500/hutan-wisata-punti-kayu.jpg',
