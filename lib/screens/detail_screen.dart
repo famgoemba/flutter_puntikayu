@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_puntikayu/models/wisata_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -13,16 +14,66 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  bool _isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavoriteStatus();
+  }
+
+  Future<void> _loadFavoriteStatus() async {
+    SharedPreferences varSP = await SharedPreferences.getInstance();
+    List<String> listWisataFavorite =
+        varSP.getStringList('keyWisataFavorite') ?? [];
+
+    setState(() {
+      _isFavorite = listWisataFavorite.contains(widget.wisataModel.nama);
+    });
+  }
+
+  Future<void> _toggleFavorite() async {
+    SharedPreferences varSP = await SharedPreferences.getInstance();
+    List<String> listWisataFavorite =
+        varSP.getStringList('keyWisataFavorite') ?? [];
+
+    setState(() {
+      if (_isFavorite) {
+        listWisataFavorite.remove(widget.wisataModel.nama);
+        _isFavorite = false;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '${widget.wisataModel.nama} dihapus dari list tempat wisata favorit',
+            ),
+          ),
+        );
+      } else {
+        listWisataFavorite.add(widget.wisataModel.nama);
+        _isFavorite = true;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '${widget.wisataModel.nama} ditambahkan ke dalam list tempat wisata favorit',
+            ),
+          ),
+        );
+      }
+    });
+
+    await varSP.setStringList('keyWisataFavorite', listWisataFavorite);
+  }
 
   Future<void> _launchGoogleMaps() async {
     final String koordinat = widget.wisataModel.koordinat;
-    final Uri tautan = Uri.parse('https://www.google.com/maps/search/?api=1&query=$koordinat');
+    final Uri tautan = Uri.parse(
+      'https://www.google.com/maps/search/?api=1&query=$koordinat',
+    );
     // final Uri tautan = Uri.parse('google.navigation:q=$koordinat&mode=d');
 
-    if(await canLaunchUrl(tautan)){
+    if (await canLaunchUrl(tautan)) {
       await launchUrl(tautan, mode: LaunchMode.externalApplication);
-    }
-    else{
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Tidak dapat membuka lokasi: $koordinat')),
       );
@@ -78,8 +129,11 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                     // Tombol Love
                     IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.favorite, color: Colors.red),
+                      onPressed: _toggleFavorite,
+                      icon: Icon(
+                        _isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: _isFavorite ? Colors.red : null,
+                      ),
                     ),
                   ],
                 ),
@@ -256,10 +310,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   child: ElevatedButton.icon(
                     onPressed: _launchGoogleMaps,
                     icon: const Icon(Icons.location_on),
-                    label: const Text(
-                      'Lokasi',
-                      style: TextStyle(fontSize: 18),
-                    ),
+                    label: const Text('Lokasi', style: TextStyle(fontSize: 18)),
                     style: ElevatedButton.styleFrom(
                       // Contoh styling, Anda bisa menyesuaikannya
                       backgroundColor: Colors.red.shade700,
