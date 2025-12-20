@@ -48,14 +48,16 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           itemBuilder: (context, index) {
             WisataModel wisataModel = _listFavorite[index];
             return InkWell(
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
                         DetailScreen(wisataModel: wisataModel),
                   ),
                 );
+
+                _loadFavoriteWisata();
               },
               child: Card(
                 shape: RoundedRectangleBorder(
