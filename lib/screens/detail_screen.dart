@@ -23,311 +23,266 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   Future<void> _loadFavoriteStatus() async {
-    SharedPreferences varSP = await SharedPreferences.getInstance();
-    List<String> listWisataFavorite =
-        varSP.getStringList('keyWisataFavorite') ?? [];
-
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    List<String> favorites = sp.getStringList('keyWisataFavorite') ?? [];
     setState(() {
-      _isFavorite = listWisataFavorite.contains(widget.wisataModel.nama);
+      _isFavorite = favorites.contains(widget.wisataModel.nama);
     });
   }
 
   Future<void> _toggleFavorite() async {
-    SharedPreferences varSP = await SharedPreferences.getInstance();
-    List<String> listWisataFavorite =
-        varSP.getStringList('keyWisataFavorite') ?? [];
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    List<String> favorites = sp.getStringList('keyWisataFavorite') ?? [];
 
     setState(() {
       if (_isFavorite) {
-        listWisataFavorite.remove(widget.wisataModel.nama);
+        favorites.remove(widget.wisataModel.nama);
         _isFavorite = false;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '${widget.wisataModel.nama} dihapus dari list tempat wisata favorit',
-            ),
-          ),
-        );
       } else {
-        listWisataFavorite.add(widget.wisataModel.nama);
+        favorites.add(widget.wisataModel.nama);
         _isFavorite = true;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              '${widget.wisataModel.nama} ditambahkan ke dalam list tempat wisata favorit',
-            ),
-          ),
-        );
       }
     });
 
-    await varSP.setStringList('keyWisataFavorite', listWisataFavorite);
+    await sp.setStringList('keyWisataFavorite', favorites);
+
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          _isFavorite
+              ? 'Ditambahkan ke favorit'
+              : 'Dihapus dari favorit',
+        ),
+      ),
+    );
   }
 
   Future<void> _launchGoogleMaps() async {
-    final String koordinat = widget.wisataModel.koordinat;
-    final Uri tautan = Uri.parse(
-      'https://www.google.com/maps/search/?api=1&query=$koordinat',
+    final Uri uri = Uri.parse(
+      'https://www.google.com/maps/search/?api=1&query=${widget.wisataModel.koordinat}',
     );
-    // final Uri tautan = Uri.parse('google.navigation:q=$koordinat&mode=d');
 
-    if (await canLaunchUrl(tautan)) {
-      await launchUrl(tautan, mode: LaunchMode.externalApplication);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Tidak dapat membuka lokasi: $koordinat')),
-      );
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // GAMBAR UTAMA DAN TOMBOL BACK (TUMPUKAN)
-              Stack(
-                children: [
-                  // Gambar Utama
-                  Image.asset(
-                    widget.wisataModel.gambarUtama,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 300,
+      backgroundColor: const Color(0xFF0E0E0E),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // HERO IMAGE
+            Stack(
+              children: [
+                Image.asset(
+                  widget.wisataModel.gambarUtama,
+                  height: 320,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                Container(
+                  height: 320,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        // ignore: deprecated_member_use
+                        Colors.black.withOpacity(0.8),
+                        Colors.transparent,
+                      ],
+                    ),
                   ),
-                  // Tombol Back
-                  Container(
-                    margin: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white70,
-                    ),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.arrow_back),
-                    ),
+                ),
+
+                // BACK BUTTON
+                Positioned(
+                  top: 40,
+                  left: 16,
+                  child: _circleButton(
+                    icon: Icons.arrow_back,
+                    onTap: () => Navigator.pop(context),
                   ),
-                ],
-              ),
-              // NAMA DAN TOMBOL LOVE
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Nama
-                    Text(
-                      widget.wisataModel.nama,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    // Tombol Love
-                    IconButton(
-                      onPressed: _toggleFavorite,
-                      icon: Icon(
+                ),
+
+                // FAVORITE BUTTON
+                Positioned(
+                  top: 40,
+                  right: 16,
+                  child: _circleButton(
+                    icon:
                         _isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: _isFavorite ? Colors.red : null,
+                    color: _isFavorite ? Colors.redAccent : Colors.white,
+                    onTap: _toggleFavorite,
+                  ),
+                ),
+              ],
+            ),
+
+            // TITLE
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(
+                widget.wisataModel.nama,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            _infoTile(Icons.location_on, 'Alamat',
+                widget.wisataModel.alamat),
+            _infoTile(Icons.access_time, 'Jam Buka',
+                widget.wisataModel.jamBuka),
+            _infoTile(Icons.camera_alt, 'Instagram',
+                widget.wisataModel.instagram),
+
+            _sectionDivider(),
+
+            // DESCRIPTION
+            _sectionTitle('Deskripsi'),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                widget.wisataModel.deskripsi,
+                style: TextStyle(
+                  color: Colors.grey.shade300,
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.justify,
+              ),
+            ),
+
+            _sectionDivider(),
+
+            // GALLERY
+            _sectionTitle('Galeri'),
+            SizedBox(
+              height: 160,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.only(left: 16),
+                itemCount: widget.wisataModel.gambarGaleri.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 12),
+                    width: 160,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            widget.wisataModel.gambarGaleri[index],
+                        fit: BoxFit.cover,
+                        placeholder: (c, s) =>
+                            const Center(child: CircularProgressIndicator()),
+                        errorWidget: (c, s, e) =>
+                            const Icon(Icons.error),
                       ),
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
-              // INFORMASI ALAMAT, JAM BUKA, DAN INSTAGRAM
-              // Alamat
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 4,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.location_on, color: Colors.red),
-                    SizedBox(
-                      width: 80,
-                      child: Text(
-                        ' Alamat',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Text(':'),
-                    const SizedBox(width: 8),
-                    Expanded(child: Text(widget.wisataModel.alamat)),
-                  ],
-                ),
-              ),
-              // Jam Buka
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 4,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.access_time, color: Colors.blue),
-                    SizedBox(
-                      width: 80,
-                      child: Text(
-                        ' Buka',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Text(':'),
-                    const SizedBox(width: 8),
-                    Expanded(child: Text(widget.wisataModel.jamBuka)),
-                  ],
-                ),
-              ),
-              // Instagram
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 4,
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Icon(Icons.video_label, color: Colors.green),
-                    SizedBox(
-                      width: 80,
-                      child: Text(
-                        ' IG',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Text(':'),
-                    const SizedBox(width: 8),
-                    Expanded(child: Text(widget.wisataModel.instagram)),
-                  ],
-                ),
-              ),
-              // DESKRIPSI
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  left: 16,
-                  right: 16,
-                  bottom: 0,
-                ),
-                child: Divider(color: Colors.grey.shade300),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Deskripsi',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      widget.wisataModel.deskripsi,
-                      textAlign: TextAlign.justify,
-                    ),
-                  ],
-                ),
-              ),
-              // GAMBAR GALERI
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  left: 16,
-                  right: 16,
-                  bottom: 0,
-                ),
-                child: Divider(color: Colors.grey.shade300),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Galeri',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      height: 150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: widget.wisataModel.gambarGaleri.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(right: 8),
-                            child: ClipRRect(
-                              borderRadius: BorderRadiusGeometry.circular(15),
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    widget.wisataModel.gambarGaleri[index],
-                                placeholder: (context, url) => Transform.scale(
-                                  scale: 0.2,
-                                  child: const CircularProgressIndicator(),
-                                ),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
-                                width: 150,
-                                height: 100,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // TOMBOL LOKASI
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  left: 16,
-                  right: 16,
-                  bottom: 0,
-                ),
-                child: Divider(color: Colors.grey.shade300),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SizedBox(
-                  width: double.infinity, // Mengambil lebar penuh
-                  height: 50, // Tinggi tombol yang proporsional
-                  child: ElevatedButton.icon(
-                    onPressed: _launchGoogleMaps,
-                    icon: const Icon(Icons.location_on),
-                    label: const Text('Lokasi', style: TextStyle(fontSize: 18)),
-                    style: ElevatedButton.styleFrom(
-                      // Contoh styling, Anda bisa menyesuaikannya
-                      backgroundColor: Colors.red.shade700,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
+            ),
+
+            _sectionDivider(),
+
+            // MAP BUTTON
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton.icon(
+                  onPressed: _launchGoogleMaps,
+                  icon: const Icon(Icons.map),
+                  label: const Text('Lihat Lokasi'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepOrange,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
                     ),
                   ),
                 ),
               ),
-              // Tambahkan SizedBox di bawah tombol jika perlu ruang ekstra
-              const SizedBox(height: 16),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  // ================== WIDGET HELPERS ==================
+
+  Widget _circleButton({
+    required IconData icon,
+    Color color = Colors.white,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(50),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          // ignore: deprecated_member_use
+          color: Colors.black.withOpacity(0.5),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(icon, color: color),
+      ),
+    );
+  }
+
+  Widget _infoTile(IconData icon, String title, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.deepOrange, size: 20),
+          const SizedBox(width: 8),
+          Text(
+            '$title:',
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(color: Colors.grey.shade300),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _sectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _sectionDivider() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Divider(color: Colors.grey.shade800),
     );
   }
 }

@@ -9,8 +9,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF0E0E0E),
       appBar: AppBar(
-        title: const Text('Home'),
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: const Text(
+          'Explore Destination',
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
@@ -18,51 +24,76 @@ class HomeScreen extends StatelessWidget {
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 8.0,
-            mainAxisSpacing: 8.0
-          ), 
+            mainAxisSpacing: 8.0,
+          ),
           itemCount: wisataList.length,
           itemBuilder: (context, index) {
             WisataModel wisataModel = wisataList[index];
             return InkWell(
+              borderRadius: BorderRadius.circular(16),
               onTap: () {
                 Navigator.push(
-                  context, 
+                  context,
                   MaterialPageRoute(
-                    builder: (context) => DetailScreen(wisataModel: wisataModel),
-                  )
+                    builder: (context) =>
+                        DetailScreen(wisataModel: wisataModel),
+                  ),
                 );
               },
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                elevation: 1,
+                elevation: 3,
+                shadowColor: Colors.black54,
                 child: Column(
                   children: [
-                    //Gambar Utama Tempat Wisata
+                    // Gambar Utama
                     Expanded(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(16), 
-                          topRight: Radius.circular(16)
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          topRight: Radius.circular(16),
                         ),
-                        child: Image.asset(
-                          wisataModel.gambarUtama,
-                          fit: BoxFit.cover,
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Image.asset(
+                              wisataModel.gambarUtama,
+                              fit: BoxFit.cover,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    // ignore: deprecated_member_use
+                                    Colors.black.withOpacity(0.6),
+                                    Colors.transparent,
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    //Nama Tempat Wisata
+
+                    // Nama Tempat Wisata
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(10),
                       child: Text(
                         wisataModel.nama,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 2, 2, 2),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

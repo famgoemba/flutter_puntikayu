@@ -16,8 +16,8 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
-    _txtSearch.addListener(_filterWisataProcess);
     super.initState();
+    _txtSearch.addListener(_filterWisataProcess);
   }
 
   @override
@@ -43,7 +43,12 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Search')),
+      backgroundColor: const Color(0xFF0E0E0E),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        elevation: 0,
+        title: const Text('Search Destination'),
+      ),
       body: Column(
         children: [
           // SEARCH BOX
@@ -51,56 +56,105 @@ class _SearchScreenState extends State<SearchScreen> {
             padding: const EdgeInsets.all(16),
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.deepOrange.shade100,
+                color: const Color(0xFF1A1A1A),
+                borderRadius: BorderRadius.circular(14),
               ),
               child: TextField(
                 controller: _txtSearch,
-                autofocus: false,
-                decoration: const InputDecoration(
-                  hintText: 'Cari Tempat Wisata ...',
-                  prefixIcon: Icon(Icons.search),
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Search travel destination...',
+                  hintStyle: TextStyle(color: Colors.grey.shade500),
+                  prefixIcon:
+                      const Icon(Icons.search, color: Colors.grey),
                   border: InputBorder.none,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.deepOrange),
-                  ),
-                  contentPadding: EdgeInsets.symmetric(
+                  contentPadding: const EdgeInsets.symmetric(
                     horizontal: 16,
-                    vertical: 12,
+                    vertical: 14,
                   ),
                 ),
               ),
             ),
           ),
 
-          // HASIL PENCARIAN
+          // RESULT LIST
           Expanded(
-            child: ListView.builder(
-              itemCount: _filteredWisataList.length,
-              itemBuilder: (context, index) {
-                WisataModel wisataModel = _filteredWisataList[index];
-                return ListTile(
-                  title: Text(wisataModel.nama),
-                  subtitle: Text(wisataModel.instagram),
-                  leading: Image.asset(
-                    wisataModel.gambarUtama,
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover,
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return DetailScreen(wisataModel: wisataModel);
+            child: _filteredWisataList.isEmpty
+                ? Center(
+                    child: Text(
+                      'No destination found',
+                      style: TextStyle(color: Colors.grey.shade600),
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: _filteredWisataList.length,
+                    itemBuilder: (context, index) {
+                      WisataModel wisataModel =
+                          _filteredWisataList[index];
+                      return InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailScreen(
+                                      wisataModel: wisataModel),
+                            ),
+                          );
                         },
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF1A1A1A),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            children: [
+                              // IMAGE
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  wisataModel.gambarUtama,
+                                  width: 70,
+                                  height: 70,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(width: 12),
+
+                              // INFO
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      wisataModel.nama,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              // ARROW
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                size: 14,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
           ),
         ],
       ),
