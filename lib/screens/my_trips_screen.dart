@@ -15,20 +15,20 @@ class MyTripsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: const [
           _TripItem(
-            title: 'Mount Bromo',
-            location: 'East Java',
+            title: 'Bromo',
+            location: 'Indonesia',
             image:
-                'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee',
+                'https://upload.wikimedia.org/wikipedia/commons/a/a4/Andhika_bayu_nugraha-taman_nasional_bromo_tengger_semeru.jpg',
           ),
           _TripItem(
-            title: 'Korea Selatan',
-            location: 'Seoul',
+            title: 'Paris',
+            location: 'Prancis',
             image:
-                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+                'https://img1.wallspic.com/previews/4/7/0/2/7/172074/172074-eiffel_tower-les_invalides-arc_de_triomphe-montparnasse-tower-550x310.jpg',
           ),
           _TripItem(
-            title: 'korea Selatan',
-            location: 'Seoul',
+            title: 'Seoul',
+            location: 'Korea Selatan',
             image:
                 'https://silversea-discover.imgix.net/2022/12/QCRUa0gV-2asunsetinSeoulskyline_1490190263.jpg?auto=compress%2Cformat&ixlib=php-3.3.1',
           ),
